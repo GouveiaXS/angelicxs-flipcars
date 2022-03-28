@@ -56,10 +56,6 @@ end)
 
 CreateThread(function()
     if Config.UseThirdEye then
-        while true do
-            Wait(0)
-            local playerPed = PlayerPedId()
-            local playerCoords = GetEntityCoords(playerPed)
             exports[Config.ThirdEyeName]:Vehicle({
                 options = {
                     {
@@ -70,6 +66,5 @@ CreateThread(function()
                     },
                 },
             })
-        end
     end
 end)
