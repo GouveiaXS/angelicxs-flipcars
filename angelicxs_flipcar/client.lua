@@ -40,7 +40,10 @@ AddEventHandler('angelicxs-flipcar:flipcar', function()
     local inside = IsPedInAnyVehicle(ped, true)
     if dist <= 3 and not inside then
         RequestAnimDict('missfinale_c2ig_11')
-        TaskPlayAnim(ped, 'missfinale_c2ig_11', 'pushcar_offcliff_m', 2.0, -8.0, -1, 35, 0, 0, 0, 0)
+        while not HasAnimDictLoaded("missfinale_c2ig_11") do
+            Wait(10)
+        end
+	TaskPlayAnim(ped, 'missfinale_c2ig_11', 'pushcar_offcliff_m', 2.0, -8.0, -1, 35, 0, 0, 0, 0)
         Wait(Config.TimetoFlip*1000)
         local carCoords = GetEntityCoords(VehicleData)
         SetEntityRotation(VehicleData, 0, 0, 0, 1, true)
