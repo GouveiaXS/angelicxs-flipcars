@@ -14,6 +14,11 @@ end)
 
 Config.TimetoFlip = 3 						-- How long, in seconds, to flip the car.
 
+Config.Jobs = {								-- List of permitted jobs; leave empty table for to allow all.
+	["police"] = 0,
+	["mechanic"] = 0,
+}
+
 -- Visual Preference
 Config.UseThirdEye = false 					-- Enables using a third eye (depending on version will need to update export to target all vehicles)
 Config.ThirdEyeName = 'q-target' 			-- Name of third eye aplication
@@ -28,7 +33,8 @@ Config.LangType = {
 }
 
 Config.Lang = {
-	['flipped'] = 'You have flipped your vehicle!',
+	['flipped'] = 'You have flipped the vehicle!',
     ['in_vehicle'] = 'You can not flip the vehicle from inside!',
-    ['far_away'] = 'You are not close enough flip the vehicle you were in last!',
+    ['far_away'] = 'You are not close enough flip the vehicle!',
+    ['not_allowed'] = 'You don\'t have the training or tools to flip a vehicle!',
 }
