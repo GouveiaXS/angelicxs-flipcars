@@ -6,7 +6,6 @@ PlayerGrade = nil
 
 local VehicleData = nil
 
-
 RegisterNetEvent('angelicxs-flipcar:Notify', function(message, type)
 	if Config.UseCustomNotify then
         TriggerEvent('angelicxs-flipcar:CustomNotify',message, type)
@@ -87,7 +86,7 @@ AddEventHandler('angelicxs-flipcar:flipcar', function()
     local inside = IsPedInAnyVehicle(ped, true)
     if inside then
         TriggerEvent('angelicxs-flipcar:Notify', Config.Lang['in_vehicle'], Config.LangType['error'])
-    elseif hasRequiredJob() then
+    elseif hasRequiredJob() Config.AndOr RequiredItem() then
         local pedcoords = GetEntityCoords(ped)
         if Config.UseESX then
             VehicleData = ESX.Game.GetClosestVehicle()
@@ -129,3 +128,27 @@ CreateThread(function()
             })
     end
 end)
+
+function RequiredItem()
+    local hasItem = false
+    if Config.UseESX then
+        PlayerData = ESX.GetPlayerData()
+        for k, v in ipairs(PlayerData.inventory) do
+            if v.name == Config.RequiredItem and v.count > 0 then
+                hasItem = true
+                break
+            end
+        end
+    elseif Config.UseQBCore then
+        PlayerData = QBCore.Functions.GetPlayerData()
+        for slot, item in pairs(PlayerData.items) do
+            if PlayerData.items[slot] then
+                if item.name == Config.RequiredItem then
+                    hasItem = true
+                    break
+                end
+            end
+        end
+    end
+    return hasItem
+end
