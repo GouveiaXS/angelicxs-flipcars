@@ -18,6 +18,11 @@ Config.Jobs = {								-- List of permitted jobs; leave empty table for to allow
 	["police"] = 0,
 	["mechanic"] = 0,
 }
+Config.AndOr = or				            --  Logic to determine item requirement. Options are:      or  //  and
+                                            -- If OR car can be flipped with either meeting the job or item requirement (if needed/wanted you can ignore Config.RequiredItem with this setting)
+                                            -- If AND car can only be flipped by having both job and item requirement
+Config.RequiredItem = 'itemnamehere'		-- Replace 'itemnamehere' with item to be used for flipping vehicles, it is NOT removed on use, it only needs to be in the inventory (can be ignored if Config.AndOr = or and no item is wanted). 
+
 
 -- Visual Preference
 Config.UseThirdEye = false 					-- Enables using a third eye (depending on version will need to update export to target all vehicles)
