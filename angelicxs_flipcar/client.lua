@@ -86,7 +86,32 @@ AddEventHandler('angelicxs-flipcar:flipcar', function()
     local inside = IsPedInAnyVehicle(ped, true)
     if inside then
         TriggerEvent('angelicxs-flipcar:Notify', Config.Lang['in_vehicle'], Config.LangType['error'])
-    elseif hasRequiredJob() Config.AndOr RequiredItem() then
+    elseif Config.AndOr then
+        if hasRequiredJob() and RequiredItem() then
+            local pedcoords = GetEntityCoords(ped)
+            if Config.UseESX then
+                VehicleData = ESX.Game.GetClosestVehicle()
+            elseif Config.UseQBCore then
+                VehicleData = QBCore.Functions.GetClosestVehicle()
+            end
+            local dist = #(pedcoords - GetEntityCoords(VehicleData))
+            if dist <= 3 then
+                RequestAnimDict('missfinale_c2ig_11')
+                while not HasAnimDictLoaded("missfinale_c2ig_11") do
+                    Wait(10)
+                end
+                TaskPlayAnim(ped, 'missfinale_c2ig_11', 'pushcar_offcliff_m', 2.0, -8.0, -1, 35, 0, 0, 0, 0)
+                Wait(Config.TimetoFlip*1000)
+                local carCoords = GetEntityRotation(VehicleData, 2)
+                SetEntityRotation(VehicleData, carCoords[1], 0, carCoords[3], 2, true)
+                SetVehicleOnGroundProperly(VehicleData)
+                TriggerEvent('angelicxs-flipcar:Notify', Config.Lang['flipped'], Config.LangType['success'])
+                ClearPedTasks(ped)
+            else
+                TriggerEvent('angelicxs-flipcar:Notify', Config.Lang['far_away'], Config.LangType['error'])
+            end
+        end
+    elseif hasRequiredJob() or RequiredItem() then
         local pedcoords = GetEntityCoords(ped)
         if Config.UseESX then
             VehicleData = ESX.Game.GetClosestVehicle()
