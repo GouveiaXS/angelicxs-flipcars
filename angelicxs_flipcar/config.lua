@@ -26,7 +26,7 @@ Config.RequiredItem = 'itemnamehere'		-- Replace 'itemnamehere' with item to be 
 
 -- Visual Preference
 Config.UseThirdEye = false 					-- Enables using a third eye (depending on version will need to update export to target all vehicles)
-Config.ThirdEyeName = 'q-target' 			-- Name of third eye aplication
+Config.ThirdEyeName = 'qtarget' 			-- Name of third eye aplication
 Config.UseChatCommand = true                -- Enables using chat command to flip vehicle. Must be true if Config.UseThirdEye=false.
 Config.ChatCommand = 'flipcar'              -- When Config.UseChatCommand = true, is the phrase used to flip vehicle.
 
