@@ -149,7 +149,7 @@ function FlipCarOver()
         VehicleData = QBCore.Functions.GetClosestVehicle()
     end
     local dist = #(pedcoords - GetEntityCoords(VehicleData))
-    if dist <= 3 then
+    if dist <= 3  and IsVehicleOnAllWheels(VehicleData) == false then
         RequestAnimDict('missfinale_c2ig_11')
         while not HasAnimDictLoaded("missfinale_c2ig_11") do
             Wait(10)
@@ -161,7 +161,7 @@ function FlipCarOver()
         SetVehicleOnGroundProperly(VehicleData)
         TriggerEvent('angelicxs-flipcar:Notify', Config.Lang['flipped'], Config.LangType['success'])
         ClearPedTasks(ped)
-    else
-        TriggerEvent('angelicxs-flipcar:Notify', Config.Lang['far_away'], Config.LangType['error'])
+    elseif IsVehicleOnAllWheels(VehicleData) ~= false then
+        TriggerEvent('angelicxs-flipcar:Notify', Config.Lang['allset'], Config.LangType['error'])
     end
 end
