@@ -39,6 +39,7 @@ Config.LangType = {
 
 Config.Lang = {
 	['flipped'] = 'You have flipped the vehicle!',
+	['allset'] = 'Vehicle is already upright', 
     ['in_vehicle'] = 'You can not flip the vehicle from inside!',
     ['far_away'] = 'You are not close enough flip the vehicle!',
     ['not_allowed'] = 'You don\'t have the training or tools to flip a vehicle!',
