@@ -99,6 +99,26 @@ end)
 
 CreateThread(function()
     if Config.UseThirdEye then
+		if Config.ThirdEyeName == 'qb-target' then
+			exports[Config.ThirdEyeName]:AddGlobalVehicle({
+				options = {
+                    {
+                        event = "angelicxs-flipcar:flipcar",
+                        icon = "fas fa-arrow-up",
+                        label = "Flip Vehicle",
+                        distance = 2
+                    },
+                },
+            })
+		elseif Config.ThirdEyeName == 'ox_target' then
+			local options = {
+				event = "angelicxs-flipcar:flipcar",
+				icon = "fas fa-arrow-up",
+				label = "Flip Vehicle",
+				distance = 2
+			}
+			exports.ox_target:addGlobalVehicle(options)
+		else
             exports[Config.ThirdEyeName]:Vehicle({
                 options = {
                     {
@@ -109,6 +129,7 @@ CreateThread(function()
                     },
                 },
             })
+		end
     end
 end)
 
